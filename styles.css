@@ -1,0 +1,163 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1a1a1a;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+header {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #00ff88;
+}
+
+.hero {
+    background: url('https://via.placeholder.com/1500x500') no-repeat center center/cover;
+    color: #ffffff;
+    text-align: center;
+    padding: 150px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero .cta-button {
+    padding: 10px 20px;
+    background: #00ff88;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.hero .cta-button:hover {
+    background: #00cc6a;
+}
+
+.editor {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.editor h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #00ff88;
+}
+
+.toolbox {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.tool {
+    padding: 10px 20px;
+    background: #2a2a2a;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.tool:hover {
+    background: #00ff88;
+    color: #1a1a1a;
+}
+
+.canvas {
+    border: 2px dashed #00ff88;
+    min-height: 300px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    background: #2a2a2a;
+}
+
+.draggable {
+    position: absolute;
+    cursor: grab;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#contact-form input, #contact-form textarea {
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+#contact-form button {
+    padding: 10px;
+    background: #00ff88;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+#contact-form button:hover {
+    background: #00cc6a;
+}
+
+footer {
+    background: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
