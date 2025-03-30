@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0a1f44, black);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            scroll-behavior: smooth; 
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 20px 20px; 
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.7); 
+            transition: background 0.3s; 
+            z-index: 1000; 
+        }
+
+        .navbar:hover {
+            background: rgba(0, 0, 0, 0.9); 
+        }
+
+        .navbar .links {
+            display: flex;
+            gap: 50px; 
+            justify-content: center;
+            flex: 1;
+        }
+
+        .social-icons {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .links a {
+            text-decoration: none;
+            color: white; 
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .links a:hover {
+            opacity: 0.7;
+        }
+
+        .content {
+            text-align: center;
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .content.active {
+            display: flex;
+        }
+
+        .content h1 {
+            font-size: 64px;
+            font-weight: bold;
+            text-transform: lowercase;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1.5s ease-out forwards;
+        }
+
+        .content p {
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 1.5s ease-out 0.5s forwards;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .form-container {
+            width: 100%; 
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-container label {
+            display: block;
+            margin: 15px 0 5px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white; 
+        }
+
+        .form-container input::placeholder,
+        .form-container textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-container select {
+            color: black; 
+            background: rgba(255, 255, 255, 0.3); 
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background: #7393B3;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background: #00cc6a;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            padding: 15px;
+            background: black;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .login-form-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            margin: 0 auto; 
+            display: none; 
+            transition: all 0.3s ease; 
+            position: fixed; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+        }
+
+        .login-form-container h2 {
+            margin-bottom: 20px;
+            color: #00cc6a; 
+        }
+
+        .register-link {
+            margin-top: 10px;
+            color: white;
+        }
+
+        .register-link a {
+            color: #00cc6a; 
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Start of Tawk.to Script -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/67e90cf68bce171910430b82/default'; // Your Tawk.to property ID
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!-- End of Tawk.to Script -->
+
+    <nav class="navbar">
+        <a href="#" class="sign-in" onclick="toggleLoginForm()" style="color: white; text-decoration: none;">Sign In</a> 
+        <div class="links">
+            <a onclick="showContent('home')">Home</a>
+            <a onclick="showContent('about')">About</a>
+            <a onclick="showContent('create')">Create</a>
+            <a onclick="showContent('contact')">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <div class="content active" id="home">
+        <h1>Pixel Portfolio</h1>
+        <p>Unleash your creativity and build a stunning digital presence.</p>
+    </div>
+
+    <div class="content" id="about">
+        <h1>About Us</h1>
+        <p>Pixel Portfolio is a platform designed to help professionals and creatives craft visually compelling portfolios with ease. Our intuitive tools and customization options allow users to showcase their work in a way that truly represents their skills and creativity.</p>
+        <p>With a commitment to innovation and user experience, we aim to simplify portfolio creation while maintaining a high standard of design and functionality.</p>
+    </div>
+
+    <div class="content" id="create">
+        <br><br><h1>Create Your Portfolio</h1>
+        <div class="form-container">
+            <form action="https://your-vercel-app-url.vercel.app/submit-form" method="POST" enctype="multipart/form-data">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                
+                <label for="portfolio-title">Portfolio Title</label>
+                <input type="text" id="portfolio-title" name="portfolio-title" placeholder="Enter your portfolio title" required>
+                
+                <label for="profile-picture                <label for="profile-picture">Profile Picture</label>
+                <input type="file" id="profile-picture" name="profile-picture" required>
+                
+                <label for="skills">Skills</label>
+                <input type="text" id="skills" name="skills" placeholder="Enter your skills, separated by commas" required>
+                
+                <label for="website-url">Website URL</label>
+                <input type="url" id="website-url" name="website-url" placeholder="Enter your website URL">
+                
+                <label for="linkedin-url">LinkedIn URL</label>
+                <input type="url" id="linkedin-url" name="linkedin-url" placeholder="Enter your LinkedIn URL">
+                
+                <label for="github-url">GitHub URL</label>
+                <input type="url" id="github-url" name="github-url" placeholder="Enter your GitHub URL">
+                
+                <label for="preferred-color">Preferred Color Scheme</label>
+                <input type="color" id="preferred-color" name="preferred-color" required>
+                
+                <label for="category">Portfolio Category</label>
+                <select id="category" name="category" required>
+                    <option value="developer">Developer</option>
+                    <option value="designer">Designer</option>
+                    <option value="photographer">Photographer</option>
+                </select>
+                
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number (optional)">
+                
+                <label for="launch-date">Expected Launch Date</label>
+                <input type="date" id="launch-date" name="launch-date" required>
+                
+                <label for="portfolio-description">Portfolio Description</label>
+                <textarea id="portfolio-description" name="portfolio-description" placeholder="Enter a short summary of your portfolio" rows="4" required></textarea>
+
+                <label for="experience">Experience</label>
+                <textarea id="experience" name="experience" placeholder="Describe your experience" rows="4" required></textarea>
+
+                <label for="aesthetic">Choose Aesthetic</label>
+                <select id="aesthetic" name="aesthetic" required>
+                    <option value="minimal">Minimal</option>
+                    <option value="modern">Modern</option>
+                    <option value="vintage">Vintage</option>
+                    <option value="bold">Bold</option>
+                </select>
+
+                <label>Aesthetic Options</label>
+                <div class="aesthetic-options">
+                    <label><input type="checkbox" name="options" value="dark-mode"> Dark Mode</label>
+                    <label><input type="checkbox" name="options" value="animations"> Animations</label>
+                    <label><input type="checkbox" name="options" value="gradient"> Gradient Background</label>
+                </div>
+
+                <button type="submit">Create Portfolio</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="content" id="contact">
+        <h1>Contact Us</h1>
+        <div class="form-container">
+            <form action="https://your-vercel-app-url.vercel.app/contact-form" method="POST">
+                <label for="contact-name">Full Name</label>
+                <input type="text" id="contact-name" name="contact-name" placeholder="Enter your full name" required>
+                
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" name="contact-email" placeholder="Enter your email address" required>
+                
+                <label for="contact-subject">Subject</label>
+                <input type="text" id="contact-subject" name="contact-subject" placeholder="Enter the subject" required>
+                
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="contact-message" placeholder="Enter your message" rows="6" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="login-form-container" id="login-form">
+        <h2 style="color:white;">Sign In</h2>
+        <div class="form-container">
+            <form action="https://your-vercel-app-url.vercel.app/auth" method="POST">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+
+                <button type="submit" style="background: white; color: black;">Login</button>
+            </form>
+            <div class="register-link">
+                <br><p>Don't have an account? <a href="register.html" style="color: #5288ae;">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 by Yajushi and Madhumathi. All rights reserved.
+    </footer>
+
+    <script>
+        function showContent(section) {
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            document.getElementById('login-form').style.display = 'none';
+        }
+
+        function toggleLoginForm() {
+            const loginForm = document.getElementById('login-form');
+            if (loginForm.style.display === 'block') {
+                loginForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'block';
+            }
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+        }
+
+        window.onload = function() {
+            // This is where you can add any additional scripts if needed
+        };
+    </script>
+
+</body>
+</html>
