@@ -233,19 +233,6 @@
     </style>
 </head>
 <body>
-    <!-- Start of Tawk.to Script -->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/67e90cf68bce171910430b82/default'; // Your Tawk.to property ID
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!-- End of Tawk.to Script -->
 
     <nav class="navbar">
         <a href="#" class="sign-in" onclick="toggleLoginForm()" style="color: white; text-decoration: none;">Sign In</a> 
@@ -283,7 +270,7 @@
                 <label for="portfolio-title">Portfolio Title</label>
                 <input type="text" id="portfolio-title" name="portfolio-title" placeholder="Enter your portfolio title" required>
                 
-                <label for="profile-picture                <label for="profile-picture">Profile Picture</label>
+                <label for="profile-picture">Profile Picture</label>
                 <input type="file" id="profile-picture" name="profile-picture" required>
                 
                 <label for="skills">Skills</label>
@@ -399,10 +386,6 @@
             }
             document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
         }
-
-        window.onload = function() {
-            // This is where you can add any additional scripts if needed
-        };
     </script>
 
 </body>
